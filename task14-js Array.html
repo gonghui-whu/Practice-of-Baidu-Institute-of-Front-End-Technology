@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>task14</title>
+    </head>
+    <body>
+
+        <h3>污染城市列表</h3>
+        <ul id="aqi-list">
+        <!--
+            <li>第一名：福州（样例），10</li>
+            <li>第二名：福州（样例），10</li> -->
+        </ul>
+
+        <script type="text/javascript">
+
+            var aqiData = [
+                ["北京", 90],
+                ["上海", 50],
+                ["福州", 10],
+                ["广州", 50],
+                ["成都", 90],
+                ["西安", 100]
+            ];
+
+            (function () {
+
+                /*
+                在注释下方编写代码
+                遍历读取aqiData中各个城市的数据
+                将空气质量指数大于60的城市显示到aqi-list的列表中
+                */
+                var aqiList=document.getElementById("aqi-list");
+                aqiData.sort(function(a,b){                     //按照数组第二个数字从大到小排序
+                    return b[1]-a[1];
+                });
+
+                for(var i=0,len=aqiData.length;i<len;i++){
+                    if(aqiData[i][1]>60){
+                        var li=document.createElement("li");    //如果大于60就创建一个新的列表项li
+                        li.innerHTML="第"+(i+1)+"名"+aqiData[i][0];       //将空气指数填入li
+                        aqiList.appendChild(li);                //加入到ul中
+                    }
+                }
+
+                //优秀代码
+                // var sortCount = aqiData.filter(function(item){
+                //     return (item[1] > 60);
+                // });
+                // //对大于60的城市进行排序
+                // sortCount.sort(function(a, b){
+                //     return b[1] - a[1];
+                // });
+                // var aqiList = document.getElementById('aqi-list');
+                // //将结果显示
+                // for(var i = 0; i < sortCount.length; i++){
+                //     aqiList.innerHTML += '<li>第' + (i + 1) + '名：' + sortCount[i][0] + '(样例) , ' + sortCount[i][1] + '</li>';
+                // }
+                //减少重绘和重排:var s='';s.innerHTML+='<li>...</li>'最后一次添加
+            })();
+
+        </script>
+    </body>
+</html>
